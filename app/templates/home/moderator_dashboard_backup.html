@@ -1,0 +1,33 @@
+<!-- app/templates/home/moderator_dashboard.html -->
+
+{% import "bootstrap/utils.html" as utils %}
+{% extends "base.html" %}
+{% block title %}Moderator Dashboard{% endblock %}
+{% block body %}
+<div class="intro-header">
+    <div class="container">
+      <div class="col-md-3">
+          <ul class="nav nav-pills nav-stacked">
+            <li class="active"><a href="#"><span class="glyphicon glyphicon-home"></span>Home</a></li>
+            <li><a href="{{ url_for('moderator.edit_member_input') }}"><span class="glyphicon glyphicon-user"></span>Edit Member</a></li>
+            <li><a href="{{ url_for('moderator.delete_member_input') }}"><span class="glyphicon glyphicon-user"></span>Delete Member</a></li>
+            <li><a href="{{ url_for('moderator.view_billing') }}"><span class="glyphicon glyphicon-usd"></span>Billing</a></li>
+			<li><a href="{{ url_for('moderator.post_message') }}"><span class="glyphicon glyphicon-user"></span>Send Message</a></li>
+			<li><a href="{{ url_for('home.view_messages') }}"><span class="glyphicon glyphicon-user"></span>Inbox</a></li>
+			<li><a href="{{ url_for('home.view_school_broadcast') }}"><span class="glyphicon glyphicon-user"></span>School Broadcast</a></li>
+			<li><a href="{{ url_for('home.view_community_broadcast') }}"><span class="glyphicon glyphicon-user"></span>Community Broadcast</a></li>
+          </ul>
+      </div>
+      <div class="col-md-9">
+          <br/>
+        	{{ utils.flashed_messages() }}
+					<br/>
+            <div class="intro-message">
+                <h1>Moderator Dashboard</h1>
+                <h3>For Moderators only!</h3>
+                <hr class="intro-divider">
+      			</div>
+      </div>
+    </div>
+</div>
+{% endblock %}

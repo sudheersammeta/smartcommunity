@@ -1,0 +1,19 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% extends "base.html" %}
+{% block title %}Ask a Question{% endblock %}
+{% block body %}
+<div class="content-section">
+ <div class="outer">
+    <div class="middle">
+      <div class="inner">
+        <div class="center">
+            <h1> Ask a Question.</h1>
+			<h4> Donot worry, it will be routed to right person </h4>
+            <br/>
+            {{ wtf.quick_form(form) }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock %}

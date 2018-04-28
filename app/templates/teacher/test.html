@@ -1,0 +1,55 @@
+<!-- app/templates/teacher/test.html -->
+
+{% import "bootstrap/utils.html" as utils %}
+{% extends "base.html" %}
+{% block title %}View queries{% endblock %}
+{% block body %}
+<div class="content-section">
+  <div class="outer">
+     <!-- <div class="middle"> -->
+      <!-- <div class="inner"> -->
+        <br/>
+        {{ utils.flashed_messages() }}
+        <br/>
+        <h1 style="text-align:center;">View queries</h1>
+        {% if query %}
+          <hr class="intro-divider">
+          <div class="center">
+           <!--
+            <table class="table table-striped table-bordered">
+              <thead>
+                <tr>
+                  <th width="15%"> Sender Id </th>
+                  <th width="15%"> Tag </th>
+                  <th width="40%"> Description </th>
+                  <th width="15%"> Creation Time </th>
+                  <th width="15%"> Reply </th>
+                </tr>
+              </thead>
+              <tbody>
+              {% for query in query %}
+                <tr>
+                  <td> {{ query.senderid }} </td>
+                  <td> {{ query.tag }} </td>
+                  <td> {{ query.description }} </td>
+                  <td> {{ query.creationtime }} </td>
+                  <td>  <a href="test.html">Reply</a> </td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>-->
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/owsfdh4gxyc" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <div style="text-align: center">
+        {% else %}
+          <div style="text-align: center">
+            <h3> No queries </h3>
+            <hr class="intro-divider">
+        {% endif %}
+        </div>
+      <!-- </div> -->
+    <!--</div>-->
+  </div>
+</div>
+{% endblock %}
+

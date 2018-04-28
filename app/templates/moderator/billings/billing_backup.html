@@ -1,0 +1,47 @@
+<!-- app/templates/admin/departments/department.html -->
+
+{% import "bootstrap/wtf.html" as wtf %}
+{% extends "base.html" %}
+{% block title %}
+  <center>  {{title}} </center>
+{% endblock %}
+{% block body %}
+<div class="intro-header">
+    <div class="container">
+      <div class="col-md-3">
+          <ul class="nav nav-pills nav-stacked">
+            <li><a href="#"><span class="glyphicon glyphicon-home"></span>Home</a></li>
+            <li><a href="{{ url_for('moderator.edit_member_input') }}"><span class="glyphicon glyphicon-user"></span>Edit Member</a></li>
+            <li><a href="{{ url_for('moderator.delete_member_input') }}"><span class="glyphicon glyphicon-user"></span>Delete Member</a></li>
+            <li class="active"><a href="{{ url_for('moderator.view_billing') }}"><span class="glyphicon glyphicon-usd"></span>Billing</a></li>
+            <li><a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Charts</a></li>
+            <li><a href="#"><i class="fa fa-table fa-fw"></i>Table</a></li>
+            <li><a href="#"><i class="fa fa-tasks fa-fw"></i>Forms</a></li>
+            <li><a href="#"><i class="fa fa-calendar fa-fw"></i>Calender</a></li>
+            <li><a href="#"><i class="fa fa-book fa-fw"></i>Library</a></li>
+            <li><a href="#"><i class="fa fa-pencil fa-fw"></i>Applications</a></li>
+            <li><a href="#"><i class="fa fa-cogs fa-fw"></i>Settings</a></li>
+          </ul>
+      </div>
+      <div class="col-md-9">
+        <h1 style="text-align:center;color:#aec251;">Billing Information</h1>
+          <hr class="intro-divider">
+          <div class="center">
+            <table class="table table-striped">
+              <tbody>
+                <tr>
+                  <th width="15%" style="color:#000000;"> User Count </th>
+                  <td style="color:#000000;">{{ user_count }}</td>
+                </tr>
+                <tr>
+                  <th width="15%" style="color:#000000;"> Bill Amount </th>
+                  <td style="color:#000000;">${{ bill }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <hr class="intro-divider">
+      </div>
+    </div>
+</div>
+{% endblock %}

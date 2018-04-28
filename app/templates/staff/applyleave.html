@@ -1,0 +1,101 @@
+<!-- app/templates/staff/applyleave.html -->
+
+{% import "bootstrap/utils.html" as utils %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% extends "base2.html" %}
+{% block title %}
+<center>  {{title}} </center>
+{% endblock %}
+{% block body %}
+<div class="intro-header">
+  <div class="row affix-row">
+    <div class="col-sm-3 col-md-2 affix-sidebar">
+      <div class="sidebar-nav">
+        <div class="navbar navbar-default" role="navigation">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <span class="visible-xs navbar-brand">Sidebar menu</span>
+          </div>
+          <div class="navbar-collapse collapse sidebar-navbar-collapse">
+            <ul class="nav navbar-nav" id="sidenav01">
+              <li>
+                <a href="#" data-toggle="collapse" data-target="#toggleDemo0" data-parent="#sidenav01" class="collapsed">
+                  <h4>Home<br></h4>
+                </a>
+              </li>
+              <li>
+                <a href="#" data-toggle="collapse" data-target="#toggleDemo2" data-parent="#sidenav01" class="collapsed">
+                  <span class="glyphicon glyphicon-inbox"></span> Mailbox <span class="caret pull-right"></span>
+                </a>
+                <div class="collapse" id="toggleDemo2" style="height: 0px;">
+                  <ul class="nav nav-list">
+                    <li><a href="{{ url_for('home.view_messages') }}">&nbsp;&nbsp;&nbsp;&nbsp;Inbox</a></li>
+                    <li><a href="{{ url_for('staff.post_message') }}">&nbsp;&nbsp;&nbsp;&nbsp;Sent Messages</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li>
+                <a href="#" data-toggle="collapse" data-target="#toggleDemo3" data-parent="#sidenav01" class="collapsed">
+                  <span class="glyphicon glyphicon-inbox"></span> Broadcast <span class="caret pull-right"></span>
+                </a>
+                <div class="collapse" id="toggleDemo3" style="height: 0px;">
+                  <ul class="nav nav-list">
+                    <li><a href="{{ url_for('home.view_school_broadcast') }}">&nbsp;&nbsp;&nbsp;&nbsp;School</a></li>
+                    <li><a href="{{ url_for('home.view_community_broadcast') }}">&nbsp;&nbsp;&nbsp;&nbsp;Community</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li>
+                <a href="#" data-toggle="collapse" data-target="#toggleDemo4" data-parent="#sidenav01" class="collapsed">
+                  <span class="glyphicon glyphicon-inbox"></span> Queries <span class="caret pull-right"></span>
+                </a>
+                <div class="collapse" id="toggleDemo4" style="height: 0px;">
+                  <ul class="nav nav-list">
+                    {% if current_user.role == 'teacher' %}
+                    <li><a href="{{ url_for('teacher.view_queries') }}">&nbsp;&nbsp;&nbsp;&nbsp;View Queries</a></li>
+                    <!--<li><a href="{{ url_for('home.view_query_replies') }}">&nbsp;&nbsp;&nbsp;&nbsp;View Replies</a></li>-->
+                    {% elif current_user.role == 'student' %}
+                    <li><a href="{{ url_for('student.write_query') }}">&nbsp;&nbsp;&nbsp;&nbsp;Ask a Question</a></li>
+                    <li><a href="{{ url_for('home.view_query_replies') }}">&nbsp;&nbsp;&nbsp;&nbsp;View Replies</a></li>
+                    {% elif current_user.role == 'parent' %}
+                    <li><a href="{{ url_for('parent.write_query') }}">&nbsp;&nbsp;&nbsp;&nbsp;Ask a Question</a></li>
+                    <li><a href="{{ url_for('home.view_query_replies') }}">&nbsp;&nbsp;&nbsp;&nbsp;View Replies</a></li>
+                    {% elif current_user.role == 'staff' %}
+                    <li><a href="{{ url_for('staff.view_queries') }}">&nbsp;&nbsp;&nbsp;&nbsp;View Queries</a></li>
+                    {% endif %}
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-9 col-md-10 affix-content">
+      <div class="content-section">
+        <div class="center">
+          <h1>{{title}}</h1>
+           <br/>
+          {% with messages = get_flashed_messages() %}
+          {% if messages %}
+          {% for message in messages %}
+          <div class="alert alert-danger flashes" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            {{ message }}
+          </div>
+          {% endfor %}
+          {% endif %}
+          {% endwith %}
+          {{ wtf.quick_form(form) }}
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

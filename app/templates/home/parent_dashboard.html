@@ -1,0 +1,88 @@
+<!-- app/templates/home/parent_dashboard.html -->
+{% import "bootstrap/utils.html" as utils %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% extends "base2.html" %}
+{% block title %}
+<center>  Parent Dashboard </center>
+{% endblock %}
+{% block body %}
+<div class="intro-header">
+  <div class="row affix-row">
+    <div class="col-sm-3 col-md-2 affix-sidebar">
+      <div class="sidebar-nav">
+        <div class="navbar navbar-default" role="navigation">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <span class="visible-xs navbar-brand">Sidebar menu</span>
+          </div>
+          <div class="navbar-collapse collapse sidebar-navbar-collapse">
+            <ul class="nav navbar-nav" id="sidenav01">
+              <li>
+                <a href="#" data-toggle="collapse" data-target="#toggleDemo0" data-parent="#sidenav01" class="collapsed">
+                  <h4>Home<br></h4>
+                </a>
+              </li>
+              <li>
+                <a href="#" data-toggle="collapse" data-target="#toggleDemo" data-parent="#sidenav01" class="collapsed">
+                  <span class="glyphicon glyphicon-user"></span> Users <span class="caret pull-right"></span>
+                </a>
+                <div class="collapse" id="toggleDemo" style="height: 0px;">
+                  <ul class="nav nav-list">
+                    <li><a href="{{ url_for('home.parent_dashboard') }}"><span class="glyphicon glyphicon-user"></span>Parent Dashboard</a></li>
+			        <li><a href="{{ url_for('parent.add_student') }}"><span class="glyphicon glyphicon-user"></span>Addstudent</a></li>
+			        <li><a href="{{ url_for('parent.write_query') }}"><span class="glyphicon glyphicon-user"></span>Ask a Question</a></li>
+			<li><a href="{{ url_for('parent.post_message') }}"><span class="glyphicon glyphicon-user"></span>Send Message</a></li>
+			<li><a href="{{ url_for('home.view_messages') }}"><span class="glyphicon glyphicon-user"></span>Inbox</a></li>
+			<li><a href="{{ url_for('home.view_school_broadcast') }}"><span class="glyphicon glyphicon-user"></span>School Broadcast</a></li>
+			<li><a href="{{ url_for('home.view_community_broadcast') }}"><span class="glyphicon glyphicon-user"></span>Community Broadcast</a></li>
+            <li><a href="{{ url_for('home.view_query_replies') }}"><span class="glyphicon glyphicon-user"></span>View Queries</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li>
+                <a href="#" data-toggle="collapse" data-target="#toggleDemo2" data-parent="#sidenav01" class="collapsed">
+                  <span class="glyphicon glyphicon-inbox"></span> Mailbox <span class="caret pull-right"></span>
+                </a>
+                <div class="collapse" id="toggleDemo2" style="height: 0px;">
+                  <ul class="nav nav-list">
+                    <li><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;Inbox</a></li>
+                    <li><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;Sent Messages</a></li>
+                  </ul>
+                </div>
+              </li>
+              
+            </ul>
+          </div>
+          <!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-9 col-md-10 affix-content">
+      <div class="content-section">
+        <div class="center">
+          <h1>Parent Dashboard</h1>
+          <br/>
+          {% with messages = get_flashed_messages() %}
+          {% if messages %}
+          {% for message in messages %}
+          <div class="alert alert-danger flashes" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            {{ message }}
+          </div>
+          {% endfor %}
+          {% endif %}
+          {% endwith %}
+         
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+

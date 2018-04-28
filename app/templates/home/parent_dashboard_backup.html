@@ -1,0 +1,37 @@
+<!-- app/templates/home/parent_dashboard.html -->
+{% import "bootstrap/utils.html" as utils %}
+{% extends "base.html" %}
+{% block title %}Parent Dashboard{% endblock %}
+{% block body %}
+<div class="intro-header">
+    <div class="container">
+	<div class="col-md-3">
+          <ul class="nav nav-pills nav-stacked">
+            <li class="active"><a href="#"><span class="glyphicon glyphicon-home"></span>Home</a></li>
+			<li><a href="{{ url_for('home.parent_dashboard') }}"><span class="glyphicon glyphicon-user"></span>Parent Dashboard</a></li>
+			<li><a href="{{ url_for('parent.add_student') }}"><span class="glyphicon glyphicon-user"></span>Addstudent</a></li>
+			<li><a href="{{ url_for('parent.write_query') }}"><span class="glyphicon glyphicon-user"></span>Ask a Question</a></li>
+			<li><a href="{{ url_for('parent.post_message') }}"><span class="glyphicon glyphicon-user"></span>Send Message</a></li>
+			<li><a href="{{ url_for('home.view_messages') }}"><span class="glyphicon glyphicon-user"></span>Inbox</a></li>
+			<li><a href="{{ url_for('home.view_school_broadcast') }}"><span class="glyphicon glyphicon-user"></span>School Broadcast</a></li>
+			<li><a href="{{ url_for('home.view_community_broadcast') }}"><span class="glyphicon glyphicon-user"></span>Community Broadcast</a></li>
+		  </ul>
+      </div>
+      <div class="col-md-9">
+        <br/>
+        {{ utils.flashed_messages() }}
+        <br/>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="intro-message">
+                    <h1>Parent Dashboard</h1>
+                    <h3>For Parents only!</h3>
+                    <hr class="intro-divider">
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

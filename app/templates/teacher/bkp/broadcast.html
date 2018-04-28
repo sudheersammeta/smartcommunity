@@ -1,0 +1,46 @@
+<!-- app/templates/teacher/broadcast.html -->
+
+{% import "bootstrap/utils.html" as utils %}
+{% extends "base.html" %}
+{% block title %}View School Broadcast Messages{% endblock %}
+{% block body %}
+<div class="content-section">
+  <div class="outer">
+    <div class="middle">
+      <div class="inner">
+        <br/>
+        {{ utils.flashed_messages() }}
+        <br/>
+        <h1 style="text-align:center;">{{ schoolname }} </h1>
+        {% if broadcast %}
+          <hr class="intro-divider">
+          <div class="center">
+            <table class="table table-striped table-bordered">
+              <thead>
+                <tr>
+                  <th width="90%"> Description </th>
+                  <th width="30%"> Creation Time </th>
+                </tr>
+              </thead>
+              <tbody>
+              {% for message in broadcast %}
+                <tr>
+                  <td> {{ message.description }} </td>
+                  <td> {{ message.creationtime }} </td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <div style="text-align: center">
+        {% else %}
+          <div style="text-align: center">
+            <h3> No broadcast messages available for this school </h3>
+            <hr class="intro-divider">
+        {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

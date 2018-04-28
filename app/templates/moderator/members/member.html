@@ -1,0 +1,90 @@
+<!-- app/templates/admin/departments/department.html -->
+
+{% import "bootstrap/wtf.html" as wtf %}
+{% extends "base2.html" %}
+{% block title %}
+{% if add_member %}
+Add Member
+{% else %}
+Edit Member
+{% endif %}
+{% endblock %}
+{% block body %}
+<div class="intro-header">
+  <div class="row affix-row">
+    <div class="col-sm-3 col-md-2 affix-sidebar">
+      <div class="sidebar-nav">
+        <div class="navbar navbar-default" role="navigation">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <span class="visible-xs navbar-brand">Sidebar menu</span>
+          </div>
+          <div class="navbar-collapse collapse sidebar-navbar-collapse">
+            <ul class="nav navbar-nav" id="sidenav01">
+              <li>
+                <a href="#" data-toggle="collapse" data-target="#toggleDemo0" data-parent="#sidenav01" class="collapsed">
+                  <h4>Home<br></h4>
+                </a>
+              </li>
+              <li>
+                <a href="#" data-toggle="collapse" data-target="#toggleDemo" data-parent="#sidenav01" class="collapsed">
+                  <span class="glyphicon glyphicon-user"></span> Users <span class="caret pull-right"></span>
+                </a>
+                <div class="collapse" id="toggleDemo" style="height: 0px;">
+                  <ul class="nav nav-list">
+                    <li><a href="{{ url_for('moderator.add_staff') }}">&nbsp;&nbsp;&nbsp;&nbsp;Add Staff</a></li>
+                    <li><a href="{{ url_for('moderator.add_teacher') }}">&nbsp;&nbsp;&nbsp;&nbsp;Add Teacher</a></li>
+                    <li><a href="{{ url_for('moderator.add_student') }}">&nbsp;&nbsp;&nbsp;&nbsp;Add Student</a></li>
+                    <li><a href="{{ url_for('moderator.edit_member_input') }}">&nbsp;&nbsp;&nbsp;&nbsp;Edit Member</a></li>
+                    <li><a href="{{ url_for('moderator.delete_member_input') }}">&nbsp;&nbsp;&nbsp;&nbsp;Delete Member</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li>
+                <a href="#" data-toggle="collapse" data-target="#toggleDemo2" data-parent="#sidenav01" class="collapsed">
+                  <span class="glyphicon glyphicon-inbox"></span> Mailbox <span class="caret pull-right"></span>
+                </a>
+                <div class="collapse" id="toggleDemo2" style="height: 0px;">
+                  <ul class="nav nav-list">
+                    <li><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;Inbox</a></li>
+                    <li><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;Sent Messages</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li><a href="{{ url_for('moderator.view_billing') }}"><i class="glyphicon glyphicon-bullhorn"></i> Broadcasts</a></li>
+              <li><a href="{{ url_for('moderator.view_billing') }}"><i class="fa fa-money"></i> Billing</a></li>
+              <li><a href="{{ url_for('moderator.view_charts') }}"><i class="fa fa-bar-chart-o fa-fw"></i> Charts</a></li>
+              <li><a href=""><span class="glyphicon glyphicon-cog"></span> Preferences</a></li>
+            </ul>
+          </div>
+          <!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-9 col-md-10 affix-content">
+      <div class="content-section">
+        <div class="center display">
+          <h1>{{title}}</h1>
+          <br/>
+          {% with messages = get_flashed_messages() %}
+          {% if messages %}
+          {% for message in messages %}
+          <div class="alert alert-danger flashes" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            {{ message }}
+          </div>
+          {% endfor %}
+          {% endif %}
+          {% endwith %}
+          {{ wtf.quick_form(form) }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

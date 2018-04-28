@@ -1,0 +1,72 @@
+{% import "bootstrap/utils.html" as utils %}
+<html lang="en">
+<head>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="{{ url_for('static', filename='css/style2.css') }}" rel="stylesheet">
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='javascripts/chartLoader.js') }}"></script>
+  {% block head %}
+  {% endblock %}
+</head>
+<body>
+  <div class="wrapper">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container topnav">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand topnav" href="{{ url_for('home.homepage') }}">School Connect</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            {% if current_user.is_authenticated %}
+            {% if current_user.role == 'admin' %}
+            <li><a href="{{ url_for('home.admin_dashboard') }}">Admin Dashboard</a></li>
+            <!--<li><a href="{{ url_for('admin.list_departments') }}">Departments</a></li>-->
+            <li><a href="{{ url_for('admin.list_schools') }}">Schools</a></li>
+            <!--<li><a href="{{ url_for('admin.list_roles') }}">Roles</a></li>-->
+            <!--<li><a href="{{ url_for('admin.list_employees') }}">Employees</a></li>-->
+            {% elif current_user.role == 'student' %}
+              <li><a href="{{ url_for('home.student_dashboard') }}">StudentDashboard</a></li>
+              {% elif current_user.role == 'teacher' %}
+                <li><a href="{{ url_for('home.teacher_dashboard') }}">Teacher Dashboard</a></li>
+            {% elif current_user.role == 'moderator' %}
+              <li><a href="{{ url_for('home.moderator_dashboard') }}">Moderator Dashboard</a></li>
+              <li><a href="{{ url_for('moderator.add_member') }}">Members</a></li>
+            {% elif current_user.role == 'staff' %}
+                <li><a href="{{ url_for('home.staff_dashboard') }}">Staff Dashboard</a></li>
+            {% elif current_user.role == 'parent' %}
+                <li><a href="{{ url_for('home.parent_dashboard') }}">Dashboard</a></li>
+            {% endif %}
+              <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+              <li><a><i class="fa fa-user"></i>  Hi, {{ current_user.username }}!</a></li>
+            {% else %}
+              <li><a href="{{ url_for('home.homepage') }}">Home</a></li>
+              <li><div class="dropdown">
+                      <button class="dropbtn">Register</button>
+                      <div class="dropdown-content">
+                      <a href="{{ url_for('auth.register') }}">Parent</a>
+                      <a href="{{ url_for('auth.moderatorregister') }}">Moderator</a>
+
+                      </div>
+                      </div>
+                      </li>
+
+              <li><a href="{{ url_for('auth.login') }}">Login</a></li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+    {% block body %}
+    {% endblock %}
+  </div>
+</body>
+</html>
